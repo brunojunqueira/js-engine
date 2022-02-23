@@ -16,7 +16,8 @@ function createWindow() {
             nodeIntegration: true,
             contextIsolation: true,
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        backgroundColor: '#191919'
     })
 
     // and load the index.html of the app.
