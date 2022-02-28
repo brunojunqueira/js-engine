@@ -15,7 +15,8 @@ function createWindow() {
             nodeIntegration: true,
             contextIsolation: true,
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        backgroundColor: '#191919'
     })
 
     mainWindow.loadURL('http://localhost:3000');

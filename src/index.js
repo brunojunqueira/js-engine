@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
 import { ChakraProvider } from '@chakra-ui/react'
-import TitleBar from './TitleBar';
+
+import TitleBar from './components/Index/TitleBar';
+import App from './App';
+import { SizeState } from './contexts/SizeState';
+
+import './index.css';
+
 ReactDOM.render(
-  <ChakraProvider>
-    <TitleBar/>
-    <App />
+  <ChakraProvider id="test">
+    <SizeState>
+      <TitleBar/>
+      <App />
+    </SizeState>
   </ChakraProvider>,
   document.getElementById('root')
 );

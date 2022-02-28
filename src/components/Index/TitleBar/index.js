@@ -18,7 +18,7 @@ export default function TitleBar(){
                 <Text position='absolute' left='50%' transform='translate(-50%, 0)' alignSelf='center'>JS Engine</Text>
             </Flex>
             <Flex className="nodraggable" position='absolute' left='0' justify='center' align='left'>
-                <Image boxSize='20px' marginTop='8px' marginLeft='8px' borderRadius='50%' href="https://ibb.co/DKz8HHr" src='https://i.ibb.co/QmpC33D/js-icon.png' alt="js-icon"/>
+                <Image boxSize='20px' marginTop='8px' marginLeft='8px' borderRadius='50%' src='https://i.ibb.co/QmpC33D/js-icon.png' alt="js-icon"/>
                 <Options className="nodraggable"/>
             </Flex>
             <Flex className="nodraggable" color='white' position='absolute' top='0' right='0'>
