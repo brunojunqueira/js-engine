@@ -1,14 +1,15 @@
-.App {
+.app-container {
   color: white;
 
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-
-  width: calc(100vw - 17px);
+  width: 100vw;
   height: calc(100vh - 35px);
 
   overflow: hidden;
 
   display: flex;
+}
+
+.small-mode {
+  height: calc(200vh - 35px);
+  width: 100vw;
 }

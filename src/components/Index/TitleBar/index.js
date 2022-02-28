@@ -13,7 +13,7 @@ export default function TitleBar(){
 
     return(
         <>
-            <Flex userSelect='none' h='35px' color='white' backgroundColor='blackAlpha.900' w='100%'>
+            <Flex position="sticky" top="0" userSelect='none' h='35px' color='white' backgroundColor='blackAlpha.900' w='100%'>
                 <Flex justify='center' align='center' boxSize='35px'>
                     <Image boxSize='25px' borderRadius='50%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png'/>
                 </Flex>
