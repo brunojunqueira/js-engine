@@ -7,7 +7,7 @@ import TitleBar from './components/Index/TitleBar';
 import App from './App';
 import { SizeState } from './contexts/SizeState';
 
-import './index.css';
+import './index.scss';
 
 ReactDOM.render(
   <ChakraProvider id="test">

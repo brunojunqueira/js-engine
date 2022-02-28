@@ -13,7 +13,7 @@ export default function TitleBar(){
     }
 
     return(
-        <Flex userSelect='none' h='35px' color='white' backgroundColor='blackAlpha.600' width='100%'>
+        <Flex position="sticky" top="0" userSelect='none' h='35px' color='white' backgroundColor='blackAlpha.600' width='100%'>
             <Flex className="draggable" h='35px' color='white' width='100%'>
                 <Text position='absolute' left='50%' transform='translate(-50%, 0)' alignSelf='center'>JS Engine</Text>
             </Flex>
