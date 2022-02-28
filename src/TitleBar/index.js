@@ -1,31 +1,31 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import {VscChromeClose, VscChromeMaximize, VscChromeMinimize, VscChromeRestore} from 'react-icons/vsc'
-import './style.css';
+import Options from "./Options";
+import './style.scss';
 
 export default function TitleBar(){
     const [isMaximized, setMaximized] = useState(true);
 
     function toggleMaximized(){
         setMaximized(!isMaximized);
-        window.electronAPI.toggleMaximizeApp(!isMaximized);
+        window.eAPI.toggleMaximizeApp(!isMaximized);
     }
 
     return(
-        <>
-            <Flex userSelect='none' h='35px' color='white' backgroundColor='blackAlpha.900' w='100vw'>
-                <Flex justify='center' align='center' boxSize='35px'>
-                    <Image boxSize='25px' borderRadius='50%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png'/>
-                </Flex>
+        <Flex userSelect='none' h='35px' color='white' backgroundColor='blackAlpha.600' width='100%'>
+            <Flex className="draggable" h='35px' color='white' width='100%'>
                 <Text position='absolute' left='50%' transform='translate(-50%, 0)' alignSelf='center'>JS Engine</Text>
-                <Flex position='absolute' right='0'>
-                    <Flex justifyContent='center' align='center'  _hover={{backgroundColor:'whiteAlpha.300' }} w='45px' h='35px' borderRadius='none'  onClick={window.electronAPI.minimizeApp}><VscChromeMinimize color='white'/></Flex>
-                    <Flex justifyContent='center' align='center'  _hover={{backgroundColor:'whiteAlpha.300' }} w='45px' h='35px' borderRadius='none' onClick={toggleMaximized}>{(!isMaximized)? <VscChromeMaximize/> : <VscChromeRestore/>}</Flex>
-                    <Flex justifyContent='center' align='center'  _hover={{backgroundColor:'red' }} w='45px' h='35px' borderRadius='none'  onClick={window.electronAPI.closeApp} id='test'><VscChromeClose/></Flex>
-                </Flex>
             </Flex>
-            
-            
-        </>
+            <Flex className="nodraggable" position='absolute' left='0' justify='center' align='left'>
+                <Image boxSize='20px' marginTop='8px' marginLeft='8px' borderRadius='50%' href="https://ibb.co/DKz8HHr" src='https://i.ibb.co/QmpC33D/js-icon.png' alt="js-icon"/>
+                <Options className="nodraggable"/>
+            </Flex>
+            <Flex className="nodraggable" color='white' position='absolute' top='0' right='0'>
+                <Flex justify='center' align='center' _hover={{backgroundColor:'whiteAlpha.200' }} w='45px' h='35px' borderRadius='none'  onClick={window.eAPI.minimizeApp}><VscChromeMinimize/></Flex>
+                <Flex justify='center' align='center' _hover={{backgroundColor:'whiteAlpha.200' }} w='45px' h='35px' borderRadius='none' onClick={toggleMaximized}>{(!isMaximized)? <VscChromeMaximize/> : <VscChromeRestore/>}</Flex>
+                <Flex justify='center' align='center' _hover={{backgroundColor:'red' }} w='45px' h='35px' borderRadius='none'  onClick={window.eAPI.closeApp} id='test'><VscChromeClose/></Flex>
+            </Flex>
+        </Flex>
     )
 }

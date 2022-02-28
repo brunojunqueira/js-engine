@@ -1,10 +1,12 @@
-import './App.css';
+import { Button, Flex } from '@chakra-ui/react';
+import './App.scss';
+import { CreateProject } from './bin/JSEngine';
 
 function App() {
   return (
-    <div className="App">
-      Alou
-    </div>
+    <Flex className="App">
+      <Button onClick={CreateProject}>New Project</Button>
+    </Flex>
   );
 }
 

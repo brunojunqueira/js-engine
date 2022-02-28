@@ -1,6 +1,6 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer, ipcMain } = require('electron')
 
-contextBridge.exposeInMainWorld('electronAPI', {
+contextBridge.exposeInMainWorld('eAPI', {
     minimizeApp: () => ipcRenderer.send('minimizeApp'),
     toggleMaximizeApp: (isMaximized) => {
         (isMaximized) ?
@@ -8,5 +8,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
             :
             ipcRenderer.send('unmaximizeApp')
     },
-    closeApp: () => ipcRenderer.send('closeApp')
-})
+    closeApp: () => ipcRenderer.send('closeApp'),
+    selectDirectory: async () => {
+        const dir = await ipcRenderer.invoke('selectDirectory');
+        return dir;
+    }
+});

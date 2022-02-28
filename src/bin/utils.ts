@@ -1,0 +1,1 @@
+export const defaultGravity = 9.9807;
