@@ -13,9 +13,7 @@ export function TabButton({ label, ...props }) {
             fontSize='14px'
             fontWeight='semibold'
             color='#c0c0c0'
-            outlineStyle="none"
             _active={{
-                outlineStyle: 'none',
                 bg: '#383838',
                 transform: 'scale(1)',
                 borderColor: '#bec3c9',

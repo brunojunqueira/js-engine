@@ -6,7 +6,7 @@ app.on('ready', createWindow);
 
 function createWindow() {
 
-    const mainWindow = new BrowserWindow({
+    let mainWindow = new BrowserWindow({
         simpleFullscreen: true,
         titleBarStyle: 'hidden',
         frame: false,
