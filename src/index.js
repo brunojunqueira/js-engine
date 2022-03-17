@@ -10,7 +10,6 @@ import Dashboard from './Dashboard';
 
 import './index.scss';
 
-
 ReactDOM.render(
   <ChakraProvider id="test">
     <SizeState>

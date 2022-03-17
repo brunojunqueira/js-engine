@@ -7,7 +7,7 @@ let mainWindow;
 
 function createWindow() {
 
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         simpleFullscreen: true,
         titleBarStyle: 'hidden',
         frame: false,
