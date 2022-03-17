@@ -1,13 +1,8 @@
 import { hypotenuse, module } from "./AuxMath"
-import { AddMonoBehavior } from "./JSEngine";
 import { defaultGravity } from "./utils";
+import { AddMonoBehavior } from "../contexts/Engine";
 
-function CreateBody(Transform : Transform,) : HTMLElement{
-    return document.createElement('div');
-}
-
-
-export default class MonoBehavior {
+export class MonoBehavior {
     Start: () => void = () => {}
     Update: () => void = () => {}
     FixedUpdate?: () => void
@@ -26,13 +21,14 @@ export class GameObject{
     rigidBody?: RigidBody
     name: string
     scripts?: HTMLScriptElement[]
+    children?: GameObject []
+    controller?: Controller
     destroy?: () => void
 
     constructor(id: number){
         this.transform = new Transform();
         this.id = id;
         this.name = 'GameObject#' + id;
-        this.body = CreateBody(this.transform);
     }
     
     getAngleToTarget(target: GameObject){
@@ -45,10 +41,10 @@ export class GameObject{
         let cosseno = diffX/hipotenusa;
         let degree: number = 0;
 
-        if (seno > 0 && cosseno > 0 || seno == 1 && cosseno == 0) degree = (seno * 90);
-        else if (seno > 0 && cosseno < 0 || seno == 0 && cosseno == -1) degree = 90 + module(cosseno * 90);
-        else if (seno < 0 && cosseno < 0 || seno == -1 && cosseno == 0) degree = 180 + module(seno * 90);
-        else if (seno < 0 && cosseno > 0 || seno == 0 && cosseno == 1) degree = 270 + cosseno * 90;
+        if      ((seno > 0 && cosseno > 0) || (seno === 1 && cosseno === 0)) degree = seno * 90;
+        else if ((seno > 0 && cosseno < 0) || (seno === 0 && cosseno ===-1)) degree = 90  + module(cosseno * 90);
+        else if ((seno < 0 && cosseno < 0) || (seno ===-1 && cosseno === 0)) degree = 180 + module(seno * 90);
+        else if ((seno < 0 && cosseno > 0) || (seno === 0 && cosseno === 1)) degree = 270 + cosseno * 90;
 
         return degree;
     }
@@ -108,10 +104,10 @@ export class Controller {
         this.transform = gameObject.transform;
     }
 
-    lookAt (target: GameObject){
-        let degree = this.gameObject.getAngleToTarget(target);
-        //this.gameObject.transform.rotate(degree);
-    }
+    // lookAt (target: GameObject){
+    //     let degree = this.gameObject.getAngleToTarget(target);
+    //     this.gameObject.transform.rotate(degree);
+    // }
     
     moveTo(x: number, y: number, velocity = 1){
         let disX = x - this.transform.position.x;
@@ -123,10 +119,10 @@ export class Controller {
         let xvel = (disX/estimatedTime);
         let yvel = (disY/estimatedTime);
 
-        if(disX != 0 ){
+        if(disX !== 0 ){
         this.transform.position.x += xvel;
         } ;
-        if(disY != 0 ) {
+        if(disY !== 0 ) {
         this.transform.position.y += yvel;
         }
     }

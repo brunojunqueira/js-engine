@@ -9,8 +9,9 @@ contextBridge.exposeInMainWorld('eAPI', {
             ipcRenderer.send('unmaximizeApp')
     },
     closeApp: () => ipcRenderer.send('closeApp'),
-    selectDirectory: async () => {
-        const dir = await ipcRenderer.invoke('selectDirectory');
+    selectDirectory: async () => { 
+        let dir = await ipcRenderer.invoke('selectDirectory');
         return dir;
-    }
+    },
+    createScene: (path, scene) => ipcRenderer.send('createScene', [path, scene])
 });
