@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer, ipcMain } = require('electron')
+const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('eAPI', {
     minimizeApp: () => ipcRenderer.send('minimizeApp'),
@@ -13,5 +13,10 @@ contextBridge.exposeInMainWorld('eAPI', {
         let dir = await ipcRenderer.invoke('selectDirectory');
         return dir;
     },
-    createScene: (path, scene) => ipcRenderer.send('createScene', [path, scene])
+    createScene: (path, scene) => ipcRenderer.send('createScene', [path, scene]),
+    saveProject: (config, path) => ipcRenderer.send('saveProject', [config, path]),
+    openProject: async (path) => { 
+       let config = await ipcRenderer.invoke('openProject', [path]);
+       return config;
+    }
 });

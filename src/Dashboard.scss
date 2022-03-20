@@ -36,10 +36,12 @@
 
 .project-area{
   width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 15px;
+  font-weight: bold;
 }
 
 .options-area{
@@ -49,5 +51,7 @@
 
 .option{
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }

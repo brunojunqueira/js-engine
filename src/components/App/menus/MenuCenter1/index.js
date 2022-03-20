@@ -1,9 +1,11 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { useEngineContext } from '../../../../hooks/useEngineContext';
 
 export function MenuCenter1() {
 
     const { Project, Time } = useEngineContext();
+
+    console.log(Project.scenes);
 
     return (
         <Box 
@@ -14,7 +16,6 @@ export function MenuCenter1() {
             alignItems="center"
             justifyContent="center"
         >
-            
         </Box>
     );
 }

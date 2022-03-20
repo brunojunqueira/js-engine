@@ -2,7 +2,7 @@ import { hypotenuse, module } from "./AuxMath"
 import { defaultGravity } from "./utils";
 import { AddMonoBehavior } from "../contexts/Engine";
 
-export class MonoBehavior {
+class MonoBehavior {
     Start: () => void = () => {}
     Update: () => void = () => {}
     FixedUpdate?: () => void
@@ -140,3 +140,5 @@ export class Controller {
         this.transform.position.y += (this.gameObject.rigidBody)? this.gameObject.rigidBody.velocity : velocity;
     }  
 }
+
+export default MonoBehavior;

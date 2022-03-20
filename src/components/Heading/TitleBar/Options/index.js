@@ -3,14 +3,13 @@ import TitleOption from "../Titleoption";
 import { useEngineContext } from "../../../../hooks/useEngineContext";
 
 export default function Options({...props}){
-
-    const {CreateProject} = useEngineContext();
+    const { ResetProject, OpenProject } = useEngineContext();
 
     const arquivo = {
         name:'Arquivo', 
         menu:[
-            {name:'Novo Projeto', func: CreateProject}, 
-            {name:'Abrir Projeto', func: () => {}}
+            {name:'Novo Projeto', func: (value=null) => ResetProject(value)}, 
+            {name:'Abrir Projeto', func: () => { OpenProject() }}
         ]
     };
 

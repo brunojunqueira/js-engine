@@ -1,13 +1,14 @@
 import { createContext, useState } from 'react';
-import { MonoBehavior } from '../../bin/MonoBehavior';
+import MonoBehavior from '../../bin/MonoBehavior';
 import Project from '../../bin/Project';
 import Scene from '../../bin/Scene';
 
-// ----------------------------------------------------- VARIABLES --------------------------------------------------//
 
-const MonoBehaviors = [] as MonoBehavior [];
+//#region -------------------------------------------------- VARIABLES -----------------------------------------------------//
 
-const Scenes = [] as Scene []
+var MonoBehaviors = [] as MonoBehavior [];
+
+var Scenes = [] as Scene []
 
 declare const window: any;
 
@@ -26,9 +27,9 @@ const Time = {
     lastFrameTime: () => {return control.lastFrameTime}
 }
 
-// -------------------------------------------------- END VARIABLES -------------------------------------------------//
+//#endregion
 
-// ----------------------------------------- EXPORTED UTIL FUNCTIONS SECTION --------------------------------------- //
+//#region ----------------------------------------- EXPORTED UTIL FUNCTIONS SECTION ----------------------------------------//
 
 export function AddMonoBehavior(MonoBehavior : MonoBehavior){
     MonoBehaviors.push(MonoBehavior);
@@ -38,16 +39,18 @@ export function AddScene(Scene : Scene){
     Scenes.push(Scene);
 }
 
-// --------------------------------------- END EXPORTED UTIL FUNCTIONS SECTION ------------------------------------- //
+//#endregion
 
-// ----------------------------------------------- PROVIDER SECTION ------------------------------------------------ //
+//#region ----------------------------------------------- PROVIDER SECTION ------------------------------------------------ //
 
 type EngineType = {
     MonoBehaviors: MonoBehavior [], 
     Scenes: Scene [], 
     Time: object, 
     Project: Project, 
-    CreateProject: () => void, 
+    ResetProject: () => void,
+    CreateProject: (name: string, path: string) => void, 
+    OpenProject: () => void,
     AddMonoBehavior: (MonoBehavior : MonoBehavior) => void, 
     AddScene: (Scene: Scene) => void
 }
@@ -59,11 +62,23 @@ export function EngineProvider({ children }) {
 
     const [_thisproject, setProject] = useState(null);
 
-    async function createProject(){
-        let path = await window.eAPI.selectDirectory();
+    function createProject(name = 'New Project', path){
         if(path){
-            setProject(new Project('Project', path));
+            setProject(new Project(name, path));
         }
+    }
+
+    async function openProject() {
+        setProject(null);
+        let path = await window.eAPI.selectDirectory();
+        let config = await window.eAPI.openProject(path);
+        Scenes = config.scenes;
+        if(config) setProject(new Project(null, null, config));
+        
+    }
+
+    function resetProject(){
+        setProject(null);
     }
 
     return (
@@ -73,7 +88,9 @@ export function EngineProvider({ children }) {
                 Scenes: Scenes, 
                 Time: Time, 
                 Project: _thisproject, 
+                ResetProject: resetProject,
                 CreateProject: createProject, 
+                OpenProject: openProject,
                 AddMonoBehavior: AddMonoBehavior, 
                 AddScene: AddScene
 
@@ -85,7 +102,7 @@ export function EngineProvider({ children }) {
     )
 }
 
-// --------------------------------------------- END PROVIDER SECTION ----------------------------------------------- //
+//#endregion --------------------------------------------- END PROVIDER SECTION ----------------------------------------------- //
 
 
 // function Start(){    
