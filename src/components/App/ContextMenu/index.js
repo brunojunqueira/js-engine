@@ -5,9 +5,6 @@ export default function ContextMenu({cord, options}){
         <Menu defaultIsOpen>
             <MenuButton position='absolute' left={cord.x} top={cord.y} as={Flex}></MenuButton>
             <MenuList w='240px'>
-                {options.map((option, key)=>{
-                    
-                })}
             </MenuList>
         </Menu>
     )

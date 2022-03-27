@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain, dialog} = require('electron');
 const isDev = require("electron-is-dev");
 const path = require('path');
 const fs = require('fs');
+const { execSync } = require('child_process');
 const { default: axios } = require('axios');
 
 let mainWindow;
@@ -70,8 +71,25 @@ async function createWindow() {
     ipcMain.handle('openProject', (e, args) =>{
         let path = args[0];
         let result = fs.readFileSync(`${path}\\project.config`);
-        let data = JSON.parse(result.toString());
-        return data;
+        if(result != 'undefined\\project.config'){
+            let data = JSON.parse(result.toString());
+            return data;
+        }
+        else{
+            return null;
+        }
+    })
+    ipcMain.handle('getDirContent', (e, args) =>{
+        const path = args[0];
+
+        const dirContent = fs.readdirSync(path, {withFileTypes: true});
+        return dirContent;
+
+    })
+    ipcMain.handle('executeOnPrompt', (e, args) => {
+        let command = args[0];
+        const output = execSync(command, { encoding: 'utf-8' });
+        return output;
     })
     
     //#region Dev Connection Try

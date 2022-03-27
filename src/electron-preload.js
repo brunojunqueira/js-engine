@@ -18,5 +18,13 @@ contextBridge.exposeInMainWorld('eAPI', {
     openProject: async (path) => { 
        let config = await ipcRenderer.invoke('openProject', [path]);
        return config;
+    },
+    getDirContent: async (path) => {
+        let dirContent = await ipcRenderer.invoke('getDirContent', [path]);
+        return dirContent;
+    },
+    executeOnPrompt: async (command) => {
+        let output = await ipcRenderer.invoke('executeOnPrompt', [command]);
+        return output;
     }
 });

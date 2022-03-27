@@ -1,11 +1,14 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Icon, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import {VscChromeClose, VscChromeMaximize, VscChromeMinimize, VscChromeRestore} from 'react-icons/vsc'
+import {FaCog} from 'react-icons/fa'
 import Options from "./Options";
 import './style.scss';
+import { useEngineContext } from "../../../hooks/useEngineContext";
 
 export default function TitleBar(){
     const [isMaximized, setMaximized] = useState(true);
+    const { Project } = useEngineContext();
 
     function toggleMaximized(){
         setMaximized(!isMaximized);
@@ -15,10 +18,10 @@ export default function TitleBar(){
     return(
         <Flex position='sticky' top='0' userSelect='none' h='35px' color='white' backgroundColor='black' width='100%'>
             <Flex t='0' className="draggable" h='35px' color='white' width='100%'>
-                <Text position='absolute' left='50%' transform='translate(-50%, 0)' alignSelf='center'>JS Engine</Text>
+                <Text fontSize='12px' position='absolute' left='50%' transform='translate(-50%, 0)' alignSelf='center'>{Project && Project?.name + ' - '}Engine.js</Text>
             </Flex>
             <Flex className="nodraggable" position='absolute' left='0' justify='center' align='left'>
-                <Image boxSize='20px' marginTop='8px' marginLeft='8px' borderRadius='50%' src='https://i.ibb.co/QmpC33D/js-icon.png' alt="js-icon"/>
+                <Icon fontSize='14px' color='orange.200' mt='11px' ml='15px' as={FaCog}/>
                 <Options className="nodraggable"/>
             </Flex>
             <Flex className="nodraggable" color='white' position='absolute' top='0' right='0'>

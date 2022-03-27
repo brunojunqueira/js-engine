@@ -7,11 +7,11 @@ function NewProject() {
     const {CreateProject} = useContext(EngineContext);
 
     const [dir, setDir] = useState("");
-    const [name, setName] = useState("");
+    const [name, setName] = useState("New Project");
 
     async function selectDirectory() {
         const dir = await window.eAPI.selectDirectory();
-        setDir(dir);
+        if(dir) setDir(dir);
     }
 
     return (

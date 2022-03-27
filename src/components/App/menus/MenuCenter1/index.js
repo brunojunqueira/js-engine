@@ -1,12 +1,6 @@
-import { Box, Text } from '@chakra-ui/react';
-import { useEngineContext } from '../../../../hooks/useEngineContext';
+import { Box } from '@chakra-ui/react';
 
 export function MenuCenter1() {
-
-    const { Project, Time } = useEngineContext();
-
-    console.log(Project.scenes);
-
     return (
         <Box 
             id='SceneBox'
