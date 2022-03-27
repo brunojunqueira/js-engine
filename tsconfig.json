@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "target": "ES2015",
+      "module": "commonjs",
+      "lib": [ "ES2015", "dom" ],
+      "sourceMap": true,
+      "outDir": "./script", 
+      "strict": false, 
+      "strictNullChecks": false, 
+      "strictFunctionTypes": false, 
+      "noImplicitThis": false, 
+      "alwaysStrict": false, 
+      "noImplicitReturns": false, 
+      "noFallthroughCasesInSwitch": false,
+      "esModuleInterop": false,
+      "experimentalDecorators": false, 
+    }
+  }

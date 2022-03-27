@@ -101,8 +101,8 @@ export class Transform {
         this.position = { x: 0, y: 0, z: 1}
     }
 
-    rotateTo(degree){
-        this.rotation
+    rotateTo(degree: number){
+        this.rotation = degree;
     }
 }
 
