@@ -14,23 +14,40 @@ class MonoBehavior {
     }
 }
 
+    /**
+     * GameObject Class.
+     * @class GameObject
+     * @description This class is used to intantiate a GameObject in the scene.
+     * @property `name` - The name of the GameObject.
+     * @property `id` - The identifier number of the GameObject.
+     * @property `transform` - Transform that represents the position, rotation and size of GameObject in Scene. 
+     * @property *[optional]* `rigidBody` - Used to give a collision detector to GameObject.
+     * @property *[optional]* `scripts` - Paths for the GameObject scripts.
+     * @property *[optional]* `children` - Collection of GameObject childs.
+     * @property *[optional]* `controller` - Controller is used to user interact with the GameObject.
+     */
 export class GameObject{
     transform: Transform
     id: number
-    body: HTMLElement
     rigidBody?: RigidBody
     name: string
-    scripts?: HTMLScriptElement[]
+    scripts?: string []
     children?: GameObject []
     controller?: Controller
     destroy?: () => void
 
-    constructor(id: number){
+    constructor(){
         this.transform = new Transform();
-        this.id = id;
-        this.name = 'GameObject#' + id;
+        this.id = 1;
+        this.name = 'GameObject#' + this.id;
     }
     
+    /**
+     * Calculate angle's target in 2D.
+     * @description This function is used to calculate the angle beetwen the current GameObject and the target.
+     * @param target - GameObject you want to know the angle beetwen. 
+     * @returns The angle in degrees (0 - 360°).
+     */
     getAngleToTarget(target: GameObject){
         let myPos = this.transform.position;
         let targetPos = target.transform.position;
@@ -49,6 +66,12 @@ export class GameObject{
         return degree;
     }
 
+    /**
+     * Calculate distance to a target in 2D.
+     * @description This function is used to calculate the distance beetwen the current GameObject and the target.
+     * @param target - GameObject you want to know the distance beetwen. 
+     * @returns The distance in pixels.
+     */
     getDistanceToTarget(target: GameObject){
         let myPos = this.transform.position;
         let targetPos = target.transform.position;        
@@ -76,7 +99,11 @@ export class Transform {
     constructor() { 
         this.size = { x: 1, y: 1}        
         this.position = { x: 0, y: 0, z: 1}
-    }   
+    }
+
+    rotateTo(degree){
+        this.rotation
+    }
 }
 
 export class RigidBody {
@@ -104,10 +131,14 @@ export class Controller {
         this.transform = gameObject.transform;
     }
 
-    // lookAt (target: GameObject){
-    //     let degree = this.gameObject.getAngleToTarget(target);
-    //     this.gameObject.transform.rotate(degree);
-    // }
+    lookAt(target: GameObject){
+        let degree = this.gameObject.getAngleToTarget(target);
+        this.rotateTo(degree);
+    }
+
+    rotateTo(degree){
+        this.gameObject.transform.rotation = degree;
+    }
     
     moveTo(x: number, y: number, velocity = 1){
         let disX = x - this.transform.position.x;

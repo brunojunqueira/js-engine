@@ -33,6 +33,7 @@ export function MenuCenter2() {
 
     async function openDirectory(path){
        let content = await window.eAPI.getDirContent(path);
+
        content.sort((itemA, itemB) => {
            itemA = itemA.name.split('.').length;
            itemB = itemB.name.split('.').length;
