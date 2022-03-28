@@ -1,12 +1,14 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-import { MenuLeft1 } from './components/App/menus/MenuLeft1';
-import { MenuLeft2 } from './components/App/menus/MenuLeft2';
-import { MenuCenter1 } from './components/App/menus/MenuCenter1';
-import { MenuCenter2 } from './components/App/menus/MenuCenter2';
-import { MenuRight } from './components/App/menus/MenuRight';
+import { MenuLeft1 } from './menus/MenuLeft1';
+import { MenuLeft2 } from './menus/MenuLeft2';
+import { MenuCenter1 } from './menus/MenuCenter1';
+import { MenuCenter2 } from './menus/MenuCenter2';
+import { MenuRight } from './menus/MenuRight';
 
-import { useSizeContext } from './hooks/useSizeContext';
+import { useSizeContext } from '../../hooks/useSizeContext';
+
+import './app.scss';
 
 function App() {
   const { smallWindow } = useSizeContext();
