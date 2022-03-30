@@ -2,12 +2,11 @@
 # Engine.js
 
 This graphic engine was built with the purpose to make easier and intuitive build games with javascript, also optimize and turn possible run heavy games on browser web pages.
-
 ## Documentation
 
 ### class MonoBehavior
 
-```http
+```js
   const ExampleClass = new MonoBehavior();
 ```
 
@@ -26,7 +25,7 @@ This graphic engine was built with the purpose to make easier and intuitive buil
 
 Receive a *void* function that runs on the scene start.
 
-```http
+```js
   let player;
 
   ExampleClass.Start = () => {
