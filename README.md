@@ -7,7 +7,7 @@ This graphic engine was built with the purpose to make easier and intuitive buil
 ### class MonoBehavior
 
 ```js
-  const ExampleClass = new MonoBehavior();
+const ExampleClass = new MonoBehavior();
 ```
 
 | Methods      | Type       | Description                                                         |
@@ -26,11 +26,21 @@ This graphic engine was built with the purpose to make easier and intuitive buil
 Receive a *void* function that runs on the scene start.
 
 ```js
-  let player;
+let player;
 
-  ExampleClass.Start = () => {
-    player = this.getGameObjectById('player');
-  }
+ExampleClass.Start = () => {
+  player = this.getGameObjectById('player');
+}
 ```
 
+#### Update()
+Receive a *void* function that runs on each animation frame.
+
+```js
+let velocity = 2.5;
+
+ExampleClass.Update = () => {
+  player.controller.moveRight(velocity);
+}
+```
 
