@@ -44,3 +44,5 @@ ExampleClass.Update = () => {
 }
 ```
 
+<a href="https://github.com/brunojunqueira" target="_blank" rel="noreferrer"> <img src='https://github.com/brunojunqueira.png' alt='Bruno Junqueira' width="100px" height="100px"/></a> <a href="https://github.com/erick-menezes" target="_blank" rel="noreferrer"> <img src='https://github.com/erick-menezes.png' alt='Erick Menezes' width="100px" height="100px"/></a>
+
