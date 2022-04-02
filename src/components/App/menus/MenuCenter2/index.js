@@ -10,19 +10,10 @@ export function MenuCenter2() {
 
     useEffect(()=>{
         setHome();
-        const gridBack = document.getElementById('gridBack');
-        document.addEventListener('click', (e) => {
-            if(e.target === gridBack){
-                setDirIndex(null);
-            }
-        });
+        document.addEventListener('click', checkTarget);
 
         return () => {
-            document.removeEventListener('click', (e) => {
-                if(e.target === gridBack){
-                    setDirIndex(null);
-                }
-            });
+            document.removeEventListener('click', checkTarget);
         }
         // eslint-disable-next-line
     }, [])
@@ -73,6 +64,16 @@ export function MenuCenter2() {
         setDirectories(currentDir);
         openDirectory(path);
     }
+
+    function checkTarget(e) {
+        const gridBack = document.getElementById('gridBack');
+
+        if(e.target === gridBack){
+            setDirIndex(null);
+        }
+    }
+
+    console.log('dirContent', dirContent);
 
     return (
         <Box 

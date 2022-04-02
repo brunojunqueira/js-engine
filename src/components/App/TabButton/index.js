@@ -15,7 +15,6 @@ export function TabButton({ label, ...props }) {
             color='#c0c0c0'
             outlinestyle="none"
             _active={{
-                outlineStyle: 'none',
                 bg: '#383838',
                 transform: 'scale(1)',
                 borderColor: '#bec3c9',
