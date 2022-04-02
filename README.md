@@ -1,70 +1,51 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Engine.js
 
-## Available Scripts
+This graphic engine was built with the purpose to make easier and intuitive build games with javascript, also optimize and turn possible run heavy games on browser web pages.
 
-In the project directory, you can run:
+## Documentation
 
-### `npm start`
+### class MonoBehavior
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```js
+const ExampleClass = new MonoBehavior();
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Methods      | Type       | Description                                                         |
+| :----------- | :--------- | :----------------------------------------------------------------   |
+| `Start`      | `void`     | This method run on scene start.                                     |
+| `Update`     | `void`     | This method run on every animation frame.                           |
+| `LateUpdate` | `void`     | This method run on every animation frame but asynchronously.        |
+| `FixedUpdate`| `void`     | This method run on every animation frame but first than everything. |
 
-### `npm test`
+| Properties      | Type           | Description                                                         |
+| :-------------- | :------------- | :----------------------------------------------------------------   |
+| `GameObjects`   | `GameObject []`| This property contains all GameObjects that run this MonoBehavior.       |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Start()
 
-### `npm run build`
+Receive a *void* function that runs on the scene start.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+let player;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ExampleClass.Start = () => {
+  player = this.getGameObjectById('player');
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Update()
+Receive a *void* function that runs on each animation frame.
 
-### `npm run eject`
+```js
+let velocity = 2.5;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ExampleClass.Update = () => {
+  player.controller.moveRight(velocity);
+}
+```
+## Code Contributors
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project exists thanks to all the people who contribute.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="https://github.com/brunojunqueira" target="_blank" rel="noreferrer"> <img src='https://github.com/brunojunqueira.png' alt='Bruno Junqueira' width="80px" height="80px"/></a> <a href="https://github.com/erick-menezes" target="_blank" rel="noreferrer"> <img src='https://github.com/erick-menezes.png' alt='Erick Menezes' width="80px" height="80px"/></a>
