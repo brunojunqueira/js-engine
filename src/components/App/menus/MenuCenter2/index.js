@@ -73,15 +73,13 @@ export function MenuCenter2() {
         }
     }
 
-    console.log('dirContent', dirContent);
-
     return (
         <Box 
             h="40%"
             bg="#282828"
         >
             <Box as={Flex} justifyContent='left' alignItems='center' w="100%" h="26px" pl="10px" bg="#191919">
-                <Breadcrumb separator={<ChevronRightIcon color='gray.500' />}>
+                <Breadcrumb separator={<span>/</span>}>
                     {directories.map((item, index) => {
                         return(
                         <BreadcrumbItem key={index}>
@@ -94,12 +92,12 @@ export function MenuCenter2() {
             </Box>
             <Grid id='gridBack' w="100%" h="100%" pl="20px" pt="10px" templateColumns='repeat(8, 1fr)'>
                 {dirContent.map((item, index) => {
-                    let path = chooseIconByExtension(item.name);
+                    let path = chooseIconByExtension(item.type);
                     let isSelected = dirIndex === index ? 'gray.600' : 'none';
                     return(
                         <GridItem background={isSelected} onDoubleClick={() => open(`${Project.path}\\${item.name}`, item.name)} onClick={() => setDirIndex(index)} key={index} as={Flex} w='100px' h='100px' flexDir='column' justifyContent='center' alignItems='center'>
                             <Image userSelect='none' draggable='false' w='75px' h='75px' src={path}/>
-                            <Text userSelect='none' wordBreak='break-word'>{item.name}</Text>
+                            <Text userSelect='none' wordBreak='break-word'>{item.text}</Text>
                         </GridItem>
                     )
                 })}

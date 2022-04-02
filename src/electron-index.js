@@ -95,7 +95,14 @@ async function createWindow() {
         const path = args[0];
 
         const dirContent = fs.readdirSync(path, {withFileTypes: true});
-        return dirContent;
+        const contentArr = dirContent.map(item => (
+            {
+                ...item,
+                text: (item.name.split('.').length > 0) ? item.name.split('.')[0] : item.name,
+                type: fs.lstatSync(`${path}\\${item.name}`).isDirectory() ? 'folder' : '.' + item.name.split('.').pop()
+            }
+        ))
+        return contentArr;
 
     });
     ipcMain.handle('executeOnPrompt', (e, args) => {
