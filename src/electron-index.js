@@ -24,6 +24,8 @@ async function createWindow() {
     
     mainWindow.loadURL(path.join(__dirname, 'electron-loadscreen.html'));
 
+    //#region App Events
+
     ipcMain.on('minimizeApp', () =>{
         mainWindow.minimize();
     });
@@ -37,10 +39,27 @@ async function createWindow() {
     ipcMain.on('closeApp', () => {
         app.quit();
     });
-    ipcMain.handle('selectDirectory', async () =>{
-        let result = await dialog.showOpenDialog(mainWindow, {properties: ['openDirectory']});
-        let dir = result.filePaths[0];
-        return dir;
+
+    //#endregion
+
+    //#region Project Events
+
+    ipcMain.on('saveProject', (e, args) => {
+        let config = JSON.stringify(args[0]);
+        let path = args[1];
+        fs.writeFileSync(`${path}\\project.config`, config, {flag:'w'});
+
+    });
+    ipcMain.handle('openProject', (e, args) =>{
+        let path = args[0];
+        let result = fs.readFileSync(`${path}\\project.config`);
+        if(result != 'undefined\\project.config'){
+            let data = JSON.parse(result.toString());
+            return data;
+        }
+        else{
+            return null;
+        }
     });
     ipcMain.on( 'createScene', ( e, args ) =>{
         let to = args[0];
@@ -62,37 +81,32 @@ async function createWindow() {
             }
         });
     });
-    ipcMain.on('saveProject', (e, args) => {
-        let config = JSON.stringify(args[0]);
-        let path = args[1];
-        fs.writeFileSync(`${path}\\project.config`, config, {flag:'w'});
 
+    //#endregion
+
+    //#region Utils Events
+
+    ipcMain.handle('selectDirectory', async () =>{
+        let result = await dialog.showOpenDialog(mainWindow, {properties: ['openDirectory']});
+        let dir = result.filePaths[0];
+        return dir;
     });
-    ipcMain.handle('openProject', (e, args) =>{
-        let path = args[0];
-        let result = fs.readFileSync(`${path}\\project.config`);
-        if(result != 'undefined\\project.config'){
-            let data = JSON.parse(result.toString());
-            return data;
-        }
-        else{
-            return null;
-        }
-    })
     ipcMain.handle('getDirContent', (e, args) =>{
         const path = args[0];
 
         const dirContent = fs.readdirSync(path, {withFileTypes: true});
         return dirContent;
 
-    })
+    });
     ipcMain.handle('executeOnPrompt', (e, args) => {
         let command = args[0];
         const output = execSync(command, { encoding: 'utf-8' });
         return output;
-    })
+    });
     
-    //#region Dev Connection Try
+    //#endregion
+    
+    //#region Dev Try Connection
     let found = false;
     let wait = setInterval(async () => {
         let {status} = await axios.get('http://localhost:3000');
@@ -108,7 +122,7 @@ async function createWindow() {
         }
     }, 2000);
 
-    setTimeout(()=>{(!found) && clearInterval(wait);}, 60000);
+    setTimeout(()=>{(!found) && clearInterval(wait);}, 180000);
 
     //#endregion
 
