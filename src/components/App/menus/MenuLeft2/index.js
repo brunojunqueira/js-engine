@@ -28,7 +28,7 @@ export function MenuLeft2() {
     }, [currentTab]);
 
     return (
-        <Box h="40%" bg="#282828">
+        <Box h="100%" bg="#282828">
             <Box w="100%" bg="#191919">
                 <TabButton
                     style={{ background: currentTab === 'project' && '#383838' }}
@@ -51,7 +51,7 @@ export function MenuLeft2() {
                     label="Animator"
                 />
             </Box>
-            <Box w="100%" pl="20px" pt="10px">
+            <Box w="100%" h="100%">
                 {renderComponent()}
             </Box>
         </Box>

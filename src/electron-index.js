@@ -98,8 +98,8 @@ async function createWindow() {
         const contentArr = dirContent.map(item => (
             {
                 ...item,
-                text: (item.name.split('.').length > 0) ? item.name.split('.')[0] : item.name,
-                type: fs.lstatSync(`${path}\\${item.name}`).isDirectory() ? 'folder' : '.' + item.name.split('.').pop()
+                text: (item.name.split('.').length > 1) ? item.name.split('.')[0] : item.name,
+                type: (item.name.split('.').length > 1) ? '.' + item.name.split('.').pop() : 'folder'
             }
         ))
         return contentArr;

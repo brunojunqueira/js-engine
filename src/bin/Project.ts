@@ -7,7 +7,6 @@ type configuration = {
     name: string,
     path: string,
     sceneLoaded: Scene,
-    scenes: Scene [],
     monobehaviors: MonoBehavior[]
 }
 
@@ -16,12 +15,10 @@ class Project{
     name: string
     path: string
     sceneLoaded: Scene
-    scenes?: Scene []
     config: {
         name: string,
         path: string,
         sceneLoaded: Scene,
-        scenes: Scene [],
         monobehaviors: MonoBehavior[]
     }
     
@@ -30,15 +27,13 @@ class Project{
             this.name = name;
             this.path = `${path}\\${name}`;
             this.sceneLoaded = new Scene(this.path);
-            this.scenes = [this.sceneLoaded];
-            this.config = { name: this.name, path: this.path, sceneLoaded: this.sceneLoaded, scenes: this.scenes, monobehaviors: []};
+            this.config = { name: this.name, path: this.path, sceneLoaded: this.sceneLoaded, monobehaviors: []};
             window.eAPI.saveProject(this.config, this.path);
         }
         else{
             this.name = config.name;
             this.path = config.path;
             this.sceneLoaded = config.sceneLoaded;
-            this.scenes = config.scenes;
             this.config = config;
         }
     }
@@ -49,6 +44,13 @@ class Project{
 
     addMonobehavior(MonoBehavior: MonoBehavior){
         this.config.monobehaviors.push(MonoBehavior);
+    }
+    deleteMonobehavior(MonoBehavior: MonoBehavior){
+        for(let i = 0; i < this.config.monobehaviors.length; i++){
+            if(MonoBehavior === this.config.monobehaviors[i]){
+                this.config.monobehaviors.splice(i);
+            }
+        }
     }
 }
 

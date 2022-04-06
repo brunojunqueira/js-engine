@@ -1,15 +1,15 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
 export function MenuCenter1() {
     return (
         <Box 
             id='SceneBox'
-            h="60%"
+            h="100%"
             w="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
         >
+            <Box as={Flex} justifyContent='left' alignItems='center' pl="10px" w="100%" h="26px" bg="#191919">
+                <span>Scene</span>
+            </Box>
         </Box>
     );
 }

@@ -85,6 +85,7 @@ export function EngineProvider({ children }) {
     }
 
     function resetProject(){
+        saveProject();
         setProject(null);
     }
 
