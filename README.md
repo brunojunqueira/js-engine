@@ -11,12 +11,12 @@ This graphic engine was built with the purpose to make easier and intuitive buil
 const ExampleClass = new MonoBehavior();
 ```
 
-| Methods      | Type       | Description                                                         |
-| :----------- | :--------- | :----------------------------------------------------------------   |
-| `Start`      | `void`     | This method run on scene start.                                     |
-| `Update`     | `void`     | This method run on every animation frame.                           |
-| `LateUpdate` | `void`     | This method run on every animation frame but asynchronously.        |
-| `FixedUpdate`| `void`     | This method run on every animation frame but first than everything. |
+| Methods      | Type       | Return | Description                                                         |
+| :----------- | :--------- | :----- | :----------------------------------------------------------------   |
+| `Start`      | `function` | `void` | This method run on scene start.                                     |
+| `Update`     | `function` | `void` | This method run on every animation frame.                           |
+| `LateUpdate` | `function` | `void` | This method run on every animation frame but asynchronously.        |
+| `FixedUpdate`| `function` | `void` | This method run on every animation frame but first than everything. |
 
 | Properties      | Type           | Description                                                         |
 | :-------------- | :------------- | :----------------------------------------------------------------   |
